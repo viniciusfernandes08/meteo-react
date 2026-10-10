@@ -1,7 +1,7 @@
-export default function Home() {
+import { Dashboard } from '@/features/dashboard';
+
+export default function HomePage() {
   return (
-    <main className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Meteo React</h1>
-    </main>
+    <Dashboard />
   );
 }
