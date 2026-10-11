@@ -3,7 +3,7 @@ import { CloudSun } from "lucide-react";
 const Header = () => {
   return (
     <header 
-      className="flex items-center border-b border-b-gray-100/10 px-20 py-4"
+      className="flex items-center justify-center border-b border-b-gray-100/10 px-20 py-4 lg:justify-start"
     >
       <div className="flex gap-4 items-center">
         <CloudSun 
