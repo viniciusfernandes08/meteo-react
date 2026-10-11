@@ -8,6 +8,7 @@ type Props = {
   icon?: React.ReactNode
   iconPosition?: "left" | "right"
   iconClasses?: string
+  onClickIcon?: () => void
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: FC<Props> = ({ 
@@ -22,6 +23,7 @@ const Input: FC<Props> = ({
   iconPosition,
   iconClasses,
   maxLength,
+  onClickIcon
 }) => {
   return (
     <div className="flex flex-col gap-1">
@@ -32,7 +34,7 @@ const Input: FC<Props> = ({
         }
         <div className={`flex ${className}`}>
           {icon && iconPosition === "left" &&
-            <span className={iconClasses}>
+            <span className={iconClasses} onClick={onClickIcon}>
               {icon}
             </span>
           }
@@ -45,7 +47,7 @@ const Input: FC<Props> = ({
           >
           </input>
           {icon && iconPosition === "right" &&
-            <span className={iconClasses}>
+            <span className={iconClasses} onClick={onClickIcon}>
               {icon}
             </span>
           }
