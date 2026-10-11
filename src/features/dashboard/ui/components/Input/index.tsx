@@ -1,14 +1,16 @@
-import { FC } from "react"
+import { FC, Ref } from "react"
 
 type Props = {
   className?: string
   classNameInput?: string
   classNameLabel?: string
   label?: string
+  ref?: Ref<HTMLInputElement>
   icon?: React.ReactNode
   iconPosition?: "left" | "right"
   iconClasses?: string
   onClickIcon?: () => void
+  disabled?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: FC<Props> = ({ 
@@ -16,6 +18,7 @@ const Input: FC<Props> = ({
   type,
   label,
   name,
+  ref,
   placeholder,
   className,
   classNameInput,
@@ -36,14 +39,20 @@ const Input: FC<Props> = ({
         }
         <div className={`flex ${className}`}>
           {icon && iconPosition === "left" &&
-            <span className={iconClasses} onClick={onClickIcon} aria-label="icon">
+            <button 
+              className={iconClasses} 
+              onClick={onClickIcon} 
+              aria-label="icon"
+              disabled={disabled}
+            >
               {icon}
-            </span>
+            </button>
           }
           <input 
             id={id}
             type={type} 
             name={name}
+            ref={ref}
             className={classNameInput}
             placeholder={placeholder}
             maxLength={maxLength}
@@ -51,9 +60,14 @@ const Input: FC<Props> = ({
           >
           </input>
           {icon && iconPosition === "right" &&
-            <span className={iconClasses} onClick={onClickIcon} aria-label="icon">
+            <button 
+              className={iconClasses} 
+              onClick={onClickIcon} 
+              aria-label="icon"
+              disabled={disabled}
+            >
               {icon}
-            </span>
+            </button>
           }
         </div>
     </div>
