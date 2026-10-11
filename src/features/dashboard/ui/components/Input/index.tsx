@@ -36,7 +36,7 @@ const Input: FC<Props> = ({
         }
         <div className={`flex ${className}`}>
           {icon && iconPosition === "left" &&
-            <span className={iconClasses} onClick={onClickIcon}>
+            <span className={iconClasses} onClick={onClickIcon} aria-label="icon">
               {icon}
             </span>
           }
@@ -51,7 +51,7 @@ const Input: FC<Props> = ({
           >
           </input>
           {icon && iconPosition === "right" &&
-            <span className={iconClasses} onClick={onClickIcon}>
+            <span className={iconClasses} onClick={onClickIcon} aria-label="icon">
               {icon}
             </span>
           }
