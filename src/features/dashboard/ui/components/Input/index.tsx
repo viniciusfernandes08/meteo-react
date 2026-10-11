@@ -12,6 +12,7 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: FC<Props> = ({ 
+  id,
   type,
   label,
   name,
@@ -23,6 +24,7 @@ const Input: FC<Props> = ({
   iconPosition,
   iconClasses,
   maxLength,
+  disabled,
   onClickIcon
 }) => {
   return (
@@ -39,11 +41,13 @@ const Input: FC<Props> = ({
             </span>
           }
           <input 
+            id={id}
             type={type} 
-            name={name} 
+            name={name}
             className={classNameInput}
             placeholder={placeholder}
             maxLength={maxLength}
+            disabled={disabled}
           >
           </input>
           {icon && iconPosition === "right" &&
