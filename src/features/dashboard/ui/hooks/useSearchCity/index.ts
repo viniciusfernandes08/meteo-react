@@ -1,0 +1,35 @@
+import { useActionState, startTransition } from "react"
+import { getCityCoordinatesUseCase } from "@/features/dashboard/application/usecases/get-city-coordinates"
+import { dashboardRepositoryImpl } from "@/features/dashboard/infra/repositories/dashboard.repository.impl"
+
+const repository = dashboardRepositoryImpl
+
+async function cityActionOrchestrator(_: unknown, formData: FormData) {
+  const city = formData.get('city') as string
+
+  const { lat, lon } = await getCityCoordinatesUseCase(repository, city)
+
+  return {
+    lat,
+    lon
+  }
+}
+
+export const useSearchCity = () => {
+  const [city, dispatchCityAction, isPending] = useActionState(cityActionOrchestrator, {
+    lat: 0,
+    lon: 0
+  })
+
+  const handleClick = (formData: FormData) => {
+    startTransition(() => {
+      dispatchCityAction(formData);
+    })
+  }
+
+  return {
+    city,
+    handleClick,
+    isPending
+  }
+}

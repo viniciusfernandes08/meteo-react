@@ -1,0 +1,19 @@
+import { DashboardRepository } from "@/features/dashboard/domain/repositories/dashboard.repository"
+import { CityCoordinatesEntity } from "@/features/dashboard/domain/entities/city-coordinates.entity"
+import { GetCityCoordinatesDTO } from "@/features/dashboard/infra/dtos/get-city-coordinates.dto"
+import { getCityCoordinatesMapper } from "@/features/dashboard/infra/mappers/get-city-coordinates.mapper"  
+
+class DashboardRepositoryImpl implements DashboardRepository {
+  async getCityCoordinates(city: string): Promise<CityCoordinatesEntity> {
+    const response = await fetch(`/api/coordinates/${city}`, {
+      method: "GET",
+      signal: AbortSignal.timeout(5000)
+    })
+
+    const data: GetCityCoordinatesDTO = await response.json()
+
+    return getCityCoordinatesMapper.toDomain(data)
+  }
+}
+
+export const dashboardRepositoryImpl = new DashboardRepositoryImpl()
