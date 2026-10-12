@@ -40,7 +40,7 @@ const Input: FC<Props> = ({
         <div className={`flex ${className}`}>
           {icon && iconPosition === "left" &&
             <button 
-              className={iconClasses} 
+              className={`cursor-pointer disabled:opacity-30 ${iconClasses}`} 
               onClick={onClickIcon} 
               aria-label="icon"
               disabled={disabled}
@@ -61,7 +61,7 @@ const Input: FC<Props> = ({
           </input>
           {icon && iconPosition === "right" &&
             <button 
-              className={iconClasses} 
+              className={`cursor-pointer disabled:opacity-30 ${iconClasses}`} 
               onClick={onClickIcon} 
               aria-label="icon"
               disabled={disabled}
