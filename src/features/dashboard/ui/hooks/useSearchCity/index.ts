@@ -7,6 +7,10 @@ const repository = dashboardRepositoryImpl
 async function cityActionOrchestrator(_: unknown, formData: FormData) {
   const city = formData.get('city') as string
 
+  if (!city || typeof city !== "string" || city.trim() === "") {
+    throw new Error("A cidade é obrigatória")
+  }
+
   const { lat, lon } = await getCityCoordinatesUseCase(repository, city)
 
   return {
