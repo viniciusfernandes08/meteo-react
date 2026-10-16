@@ -14,6 +14,15 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
     return getCityCoordinatesMapper.toDomain(data)
   }
+
+  async getCityWeatherData(lat: number, lon: number): Promise<unknown> {
+    const response = await fetch(`/api/weather/${lat}/${lon}`, {
+      method: "GET",
+      signal: AbortSignal.timeout(5000)
+    })
+
+    return await response.json()
+  }
 }
 
 export const dashboardRepositoryImpl = new DashboardRepositoryImpl()
