@@ -1,5 +1,5 @@
 import { useActionState, startTransition } from "react"
-import { getCityCoordinatesUseCase } from "@/features/dashboard/application/usecases/get-city-coordinates"
+import { getCityWeatherUseCase } from "@/features/dashboard/application/usecases/get-city-weather"
 import { dashboardRepositoryImpl } from "@/features/dashboard/infra/repositories/dashboard.repository.impl"
 
 const repository = dashboardRepositoryImpl
@@ -11,7 +11,7 @@ async function cityActionOrchestrator(_: unknown, formData: FormData) {
     throw new Error("A cidade é obrigatória")
   }
 
-  const { lat, lon } = await getCityCoordinatesUseCase(repository, city)
+  const { lat, lon } = await getCityWeatherUseCase(repository, city)
 
   return {
     lat,
