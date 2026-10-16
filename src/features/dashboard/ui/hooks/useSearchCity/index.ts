@@ -4,7 +4,7 @@ import { dashboardRepositoryImpl } from "@/features/dashboard/infra/repositories
 
 const repository = dashboardRepositoryImpl
 
-async function cityActionOrchestrator(_: unknown, formData: FormData) {
+async function cityAction(_: unknown, formData: FormData) {
   const city = formData.get('city') as string
 
   if (!city || typeof city !== "string" || city.trim() === "") {
@@ -20,7 +20,7 @@ async function cityActionOrchestrator(_: unknown, formData: FormData) {
 }
 
 export const useSearchCity = () => {
-  const [city, dispatchCityAction, isPending] = useActionState(cityActionOrchestrator, {
+  const [city, dispatchCityAction, isPending] = useActionState(cityAction, {
     lat: 0,
     lon: 0
   })
