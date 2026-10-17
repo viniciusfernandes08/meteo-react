@@ -8,7 +8,7 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${process.env.OPENWEATHER_API_KEY}`,
+      `${process.env.OPENWEATHER_GEOCODING_BASE_URL}/direct?q=${city}&limit=1&appid=${process.env.OPENWEATHER_API_KEY}`,
       {
         method: "GET",
         signal: AbortSignal.timeout(5000)
@@ -19,8 +19,11 @@ export async function GET(
 
     return NextResponse.json(data?.[0] || {}, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ 
-      error: error instanceof Error ? error.message : "An unexpected error occurred" 
-    }, { status: 500 })
+    return NextResponse.json(
+      { 
+        error: error instanceof Error ? error.message : "An unexpected error occurred" 
+      }, 
+      { status: 500 }
+    )
   }
 }
