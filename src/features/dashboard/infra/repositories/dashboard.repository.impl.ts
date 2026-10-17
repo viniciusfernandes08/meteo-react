@@ -4,6 +4,7 @@ import { GetCityCoordinatesDTO } from "@/features/dashboard/infra/dtos/get-city-
 import { getCityCoordinatesMapper } from "@/features/dashboard/infra/mappers/get-city-coordinates.mapper"
 import { GetCityWeatherDataDTO } from "@/features/dashboard/infra/dtos/get-city-weather-data.dto"
 import { getCityWeatherDataMapper } from "@/features/dashboard/infra/mappers/get-city-weather-data.mapper"
+import { CityWeatherDataEntity } from "@/features/dashboard/domain/entities/city-weather-data.entity"
 
 class DashboardRepositoryImpl implements DashboardRepository {
   async getCityCoordinates(city: string): Promise<CityCoordinatesEntity> {
@@ -17,7 +18,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
     return getCityCoordinatesMapper.toDomain(data)
   }
 
-  async getCityWeatherData(lat: number, lon: number): Promise<unknown> {
+  async getCityWeatherData(lat: number, lon: number): Promise<CityWeatherDataEntity> {
     const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}`, {
       method: "GET",
       signal: AbortSignal.timeout(5000)
