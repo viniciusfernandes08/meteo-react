@@ -16,7 +16,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
   }
 
   async getCityWeatherData(lat: number, lon: number): Promise<unknown> {
-    const response = await fetch(`/api/weather/${lat}/${lon}`, {
+    const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}`, {
       method: "GET",
       signal: AbortSignal.timeout(5000)
     })
