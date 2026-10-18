@@ -11,21 +11,27 @@ async function cityAction(_: unknown, formData: FormData) {
     throw new Error("A cidade é obrigatória")
   }
 
-  const { lat, lon } = await getCityWeatherUseCase(repository, city)
+  const data = await getCityWeatherUseCase(repository, city)
 
-  return {
-    lat,
-    lon
-  }
+  return data
 }
 
 export const useSearchCity = () => {
   const [city, dispatchCityAction, isPending] = useActionState(cityAction, {
-    lat: 0,
-    lon: 0
+    weather: {
+      id: 0,
+      main: "",
+      description: "",
+      icon: "",
+    },
+    main: {
+      temp: 0,
+      feelsLike: 0
+    },
+    cityName: ""
   })
 
-  const handleClick = (formData: FormData) => {
+  const onSubmitCityAction = (formData: FormData) => {
     startTransition(() => {
       dispatchCityAction(formData);
     })
@@ -33,7 +39,7 @@ export const useSearchCity = () => {
 
   return {
     city,
-    handleClick,
+    onSubmitCityAction,
     isPending
   }
 }

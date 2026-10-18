@@ -11,7 +11,8 @@ export async function getCityWeatherUseCase(
   const weatherData = await getCityWeatherDataUseCase(repository, { lat, lon });
 
   return {
-    lat,
-    lon
-  }
+    weather: weatherData.weather[0],
+    main: weatherData.main,
+    cityName: weatherData.cityName
+  };
 }
