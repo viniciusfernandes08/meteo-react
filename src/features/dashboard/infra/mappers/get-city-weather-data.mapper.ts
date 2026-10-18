@@ -9,7 +9,12 @@ export const getCityWeatherDataMapper = {
         main: weather.main,
         description: weather.description,
         icon: weather.icon
-      })) ?? []
+      })) ?? [],
+      main: {
+        temp: dto?.main?.temp ?? 0,
+        feelsLike: dto?.main?.feels_like ?? 0
+      },
+      cityName: dto?.name ?? ""
     }
   }
 }

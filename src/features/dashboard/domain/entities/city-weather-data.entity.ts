@@ -1,5 +1,10 @@
 export interface CityWeatherDataEntity {
   weather: Weather[]
+  main: {
+    temp: number
+    feelsLike: number
+  }
+  cityName: string
 }
 
 interface Weather {
