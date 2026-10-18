@@ -9,7 +9,7 @@ const CityWeatherContainer = () => {
 
   return (
     <div 
-      className="flex flex-col w-full items-center justify-center gap-4 lg:flex-row lg: justify-between"
+      className="flex flex-col w-full items-center justify-center gap-4"
     >
       <FormSearchCity 
         onSubmitCityAction={onSubmitCityAction}

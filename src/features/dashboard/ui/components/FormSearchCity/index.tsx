@@ -16,7 +16,7 @@ const FormSearchCity: FC<Props> = ({
   return (
     <form
       action={onSubmitCityAction}
-      className="flex px-20 py-4 w-full justify-center"
+      className="flex py-8 w-full justify-center"
     >
       <Input
         id="city"

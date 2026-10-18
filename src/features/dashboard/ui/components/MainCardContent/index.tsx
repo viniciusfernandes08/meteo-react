@@ -19,8 +19,8 @@ type Props = {
 
 const MainCardContent: FC<Props> = ({ city }) => {
   return (
-    <section className="flex w-full pt-4 pb-2">
-      <div className="flex flex-col w-full items-center justify-center">
+    <section className="flex justify-center w-full gap-8 lg:pl-8">
+      <div className="flex flex-col items-center justify-center">
         <h2 className="text-[#f1f5f9] text-center font-medium font-serif text-lg">
           {city.cityName.toLocaleUpperCase()}
         </h2>
@@ -41,7 +41,7 @@ const MainCardContent: FC<Props> = ({ city }) => {
           Sensação térmica {city.main.feelsLike?.toFixed(0)}°C
         </h5>
       </div>
-      <div className="flex w-full justify-center items-center">
+      <div className="flex justify-center items-center">
         <Image
           src={`https://openweathermap.org/img/wn/${city.weather.icon}@2x.png`} 
           alt={city.weather.description}
