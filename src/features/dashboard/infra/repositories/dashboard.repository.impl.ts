@@ -10,7 +10,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
   async getCityCoordinates(city: string): Promise<CityCoordinatesEntity> {
     const response = await fetch(`/api/coordinates/${city}`, {
       method: "GET",
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(8000)
     })
 
     const data: GetCityCoordinatesDTO = await response.json()
@@ -21,7 +21,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
   async getCityWeatherData(lat: number, lon: number): Promise<CityWeatherDataEntity> {
     const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}`, {
       method: "GET",
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(8000)
     })
 
     const data: GetCityWeatherDataDTO = await response.json()
