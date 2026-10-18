@@ -11,7 +11,7 @@ export async function GET(
       `${process.env.OPENWEATHER_GEOCODING_BASE_URL}/direct?q=${city}&limit=1&appid=${process.env.OPENWEATHER_API_KEY}`,
       {
         method: "GET",
-        signal: AbortSignal.timeout(5000)
+        signal: AbortSignal.timeout(8000)
       }
     )
 
