@@ -15,7 +15,7 @@ const CityWeatherContainer = () => {
         onSubmitCityAction={onSubmitCityAction}
         isPending={isPending}
       />
-      <MainCardContent city={city} />
+      <MainCardContent city={city} isPending={isPending} />
     </div>
   )
 }

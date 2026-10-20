@@ -1,5 +1,6 @@
 import { FC } from "react"
 import Image from "next/image"
+import { WeatherLoading } from "../WeatherLoading"
 
 type Props = {
   city: {
@@ -15,9 +16,12 @@ type Props = {
     }
     cityName: string
   }
+  isPending: boolean
 }
 
-const MainCardContent: FC<Props> = ({ city }) => {
+const MainCardContent: FC<Props> = ({ city, isPending }) => {
+  if (isPending) return <WeatherLoading />
+  
   return (
     <section className="flex justify-center w-full gap-8 lg:pl-8">
       <div className="flex flex-col items-center justify-center">
