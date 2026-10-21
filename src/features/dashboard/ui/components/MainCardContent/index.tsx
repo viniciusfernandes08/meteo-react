@@ -17,9 +17,12 @@ type Props = {
     cityName: string
   }
   isPending: boolean
+  isEmpty: boolean
 }
 
-const MainCardContent: FC<Props> = ({ city, isPending }) => {
+const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
+  if (isEmpty) return null
+  
   if (isPending) return <WeatherLoading />
   
   return (

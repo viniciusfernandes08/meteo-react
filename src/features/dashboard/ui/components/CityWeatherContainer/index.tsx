@@ -5,7 +5,7 @@ import { useSearchCity } from "@/features/dashboard/ui/hooks"
 import { MainCardContent } from "../MainCardContent"
 
 const CityWeatherContainer = () => {
-  const { onSubmitCityAction, city, isPending } = useSearchCity()
+  const { onSubmitCityAction, city, isEmpty, isPending } = useSearchCity()
 
   return (
     <div 
@@ -15,7 +15,7 @@ const CityWeatherContainer = () => {
         onSubmitCityAction={onSubmitCityAction}
         isPending={isPending}
       />
-      <MainCardContent city={city} isPending={isPending} />
+      <MainCardContent city={city} isPending={isPending} isEmpty={isEmpty} />
     </div>
   )
 }

@@ -20,6 +20,8 @@ async function cityAction(_: unknown, formData: FormData) {
 export const useSearchCity = () => {
   const [city, dispatchCityAction, isPending] = useActionState(cityAction, EMPTY_STATE)
 
+  const isEmpty = city === EMPTY_STATE || city === undefined
+
   const onSubmitCityAction = (formData: FormData) => {
     startTransition(() => {
       dispatchCityAction(formData);
@@ -28,6 +30,7 @@ export const useSearchCity = () => {
 
   return {
     city,
+    isEmpty,
     onSubmitCityAction,
     isPending
   }
