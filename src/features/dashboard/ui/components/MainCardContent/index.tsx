@@ -15,10 +15,10 @@ type Props = {
 }
 
 const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
+  if (isPending) return <WeatherLoading />
+
   if (isEmpty) return null
 
-  if (isPending) return <WeatherLoading />
-  
   return (
     <section className="flex justify-center w-full gap-8 lg:pl-8">
       <div className="flex flex-col items-center justify-center">
