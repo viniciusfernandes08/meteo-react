@@ -1,19 +1,13 @@
 import { FC } from "react"
 import Image from "next/image"
 import { WeatherLoading } from "../WeatherLoading"
+import { Weather } from "@/features/dashboard/domain/entities/city-weather-data.entity"
+import { MainCity } from "@/features/dashboard/domain/entities/city-weather-data.entity"
 
 type Props = {
   city: {
-    weather: {
-        id: number
-        main: string
-        description: string
-        icon: string
-    }
-    main: {
-      temp: number
-      feelsLike: number
-    }
+    weather: Weather
+    main: MainCity
     cityName: string
   }
   isPending: boolean
@@ -22,7 +16,7 @@ type Props = {
 
 const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
   if (isEmpty) return null
-  
+
   if (isPending) return <WeatherLoading />
   
   return (
