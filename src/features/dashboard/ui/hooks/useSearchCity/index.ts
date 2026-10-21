@@ -1,6 +1,7 @@
 import { useActionState, startTransition } from "react"
 import { getCityWeatherUseCase } from "@/features/dashboard/application/usecases/get-city-weather"
 import { dashboardRepositoryImpl } from "@/features/dashboard/infra/repositories/dashboard.repository.impl"
+import { EMPTY_STATE } from "@/features/dashboard/ui/constants/empty-state"
 
 const repository = dashboardRepositoryImpl
 
@@ -17,19 +18,7 @@ async function cityAction(_: unknown, formData: FormData) {
 }
 
 export const useSearchCity = () => {
-  const [city, dispatchCityAction, isPending] = useActionState(cityAction, {
-    weather: {
-      id: 0,
-      main: "",
-      description: "",
-      icon: "",
-    },
-    main: {
-      temp: 0,
-      feelsLike: 0
-    },
-    cityName: ""
-  })
+  const [city, dispatchCityAction, isPending] = useActionState(cityAction, EMPTY_STATE)
 
   const onSubmitCityAction = (formData: FormData) => {
     startTransition(() => {
