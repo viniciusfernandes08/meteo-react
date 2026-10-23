@@ -22,7 +22,7 @@ const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
   return (
     <section className="flex justify-center w-full gap-8 lg:pl-8">
       <div className="flex flex-col items-center justify-center">
-        <h2 className="text-[#f1f5f9] text-center font-medium font-serif text-lg">
+        <h2 className="text-[#f1f5f9] text-center font-medium font-serif text-base md:text-lg">
           {city.cityName.toLocaleUpperCase()}
         </h2>
         <h6 className="text-[#a3a6a8] text-center font-medium text-sm">
@@ -32,13 +32,13 @@ const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
             month: "long"
           })}
         </h6>
-        <h1 className="text-[#f1f5f9] text-center font-medium text-6xl mt-4 mb-4">
+        <h1 className="text-[#f1f5f9] text-center font-medium text-4xl md:text-6xl mt-4 mb-4">
           {city.main.temp?.toFixed(0)}°C
         </h1>
-        <h5 className="text-[#f1f5f9] text-center font-medium font-serif text-lg">
+        <h5 className="text-[#f1f5f9] text-center font-medium font-serif text-base md:text-lg">
           {city.weather.description.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
         </h5>
-        <h5 className="text-[#a3a6a8] text-center font-medium">
+        <h5 className="text-[#a3a6a8] text-center font-medium text-sm md:text-base">
           Sensação térmica {city.main.feelsLike?.toFixed(0)}°C
         </h5>
       </div>
