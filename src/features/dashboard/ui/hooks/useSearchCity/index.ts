@@ -3,26 +3,41 @@ import { getCityWeatherUseCase } from "@/features/dashboard/application/usecases
 import { dashboardRepositoryImpl } from "@/features/dashboard/infra/repositories/dashboard.repository.impl"
 import { EMPTY_STATE } from "@/features/dashboard/ui/constants/empty-state"
 import { citySchema } from "@/features/dashboard/ui/schemas/city.schema"
+import { SearchCityState } from "@/features/dashboard/ui/types/search-city-state.types"
+import { ERROR_MESSAGES } from "@/features/dashboard/ui/constants/error-messages"
 
 const repository = dashboardRepositoryImpl
 
 async function cityAction(
-  _prevState: typeof EMPTY_STATE, 
+  _prevState: SearchCityState, 
   formData: FormData
-) {
+): Promise<SearchCityState> {
   const result = citySchema(formData.get("city"))
 
   if (!result.success) {
-    throw new Error(result.error)
+    return {
+      status: "error",
+      message: result.error
+    }
   }
 
-  return getCityWeatherUseCase(repository, result.data)
+  const weatherResult = await getCityWeatherUseCase(repository, result.data)
+
+  if (weatherResult.status === "error") {
+    return {
+      status: "error",
+      message: ERROR_MESSAGES[weatherResult.code]
+    }
+  }
+
+  return {
+    status: "success",
+    data: weatherResult.data
+  }
 }
 
 export const useSearchCity = () => {
-  const [city, dispatchCityAction, isPending] = useActionState(cityAction, EMPTY_STATE)
-
-  const isEmpty = city === EMPTY_STATE || city === undefined
+  const [state, dispatchCityAction, isPending] = useActionState(cityAction, EMPTY_STATE)
 
   const onSubmitCityAction = (formData: FormData) => {
     startTransition(() => {
@@ -31,8 +46,7 @@ export const useSearchCity = () => {
   }
 
   return {
-    city,
-    isEmpty,
+    state,
     onSubmitCityAction,
     isPending
   }

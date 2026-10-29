@@ -1,13 +1,5 @@
-export const EMPTY_STATE = {
-  weather: {
-    id: 0,
-    main: "",
-    description: "",
-    icon: "",
-  },
-  main: {
-    temp: 0,
-    feelsLike: 0
-  },
-  cityName: ""
+import { SearchCityState } from "@/features/dashboard/ui/types/search-city-state.types"
+
+export const EMPTY_STATE: SearchCityState = {
+  status: "idle"
 }

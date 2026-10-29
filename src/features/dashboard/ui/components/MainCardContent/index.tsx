@@ -1,24 +1,12 @@
 import { FC } from "react"
 import Image from "next/image"
-import { WeatherLoading } from "../WeatherLoading"
-import { Weather } from "@/features/dashboard/domain/entities/city-weather-data.entity"
-import { MainCity } from "@/features/dashboard/domain/entities/city-weather-data.entity"
+import { CityWeatherEntity } from "@/features/dashboard/domain/entities/city-weather.entity"
 
 type Props = {
-  city: {
-    weather: Weather
-    main: MainCity
-    cityName: string
-  }
-  isPending: boolean
-  isEmpty: boolean
+  city: CityWeatherEntity
 }
 
-const MainCardContent: FC<Props> = ({ city, isPending, isEmpty }) => {
-  if (isPending) return <WeatherLoading />
-
-  if (isEmpty) return null
-
+const MainCardContent: FC<Props> = ({ city }) => {
   return (
     <section className="flex justify-center w-full gap-8 lg:pl-8">
       <div className="flex flex-col items-center justify-center">
