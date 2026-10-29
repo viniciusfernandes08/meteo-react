@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**"
       }
-    ]
+    ],
+    qualities: [25, 50, 75, 100],
   }
 };
 
