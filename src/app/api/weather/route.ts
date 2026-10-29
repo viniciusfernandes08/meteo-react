@@ -29,13 +29,29 @@ export async function GET(req: NextRequest) {
       `${process.env.OPENWEATHER_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_API_KEY}&lang=pt_br&units=metric`,
       {
         method: "GET",
+        cache: "force-cache",
+        next: { revalidate: 600 },
         signal: AbortSignal.timeout(8000)
       }
     );
 
+    if (!response.ok) {
+      return NextResponse.json(
+        {
+          error: "Failed to fetch city weather data"
+        },
+        { status: 502 }
+      );
+    }
+
     const data = await response.json();
 
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, max-age=300, stale-while-revalidate=300"
+      }
+    });
   } catch (error) {
     return NextResponse.json(
       { 
