@@ -5,6 +5,7 @@ import { useSearchCity } from "@/features/dashboard/ui/hooks"
 import { MainCardContent } from "../MainCardContent"
 import { CityWeatherError } from "../CityWeatherError"
 import { WeatherLoading } from "../WeatherLoading"
+import { ViewTransition } from "react"
 
 const CityWeatherContainer = () => {
   const { onSubmitCityAction, state, isPending } = useSearchCity()
@@ -22,7 +23,13 @@ const CityWeatherContainer = () => {
         <CityWeatherError message={state.message} />
       )}
       {!isPending && state.status === "success" && (
-        <MainCardContent city={state.data} />
+        <ViewTransition 
+          default="none" 
+          enter="slide-up" 
+          exit="slide-down"
+        >
+          <MainCardContent city={state.data} />
+        </ViewTransition>
       )}
     </div>
   )
