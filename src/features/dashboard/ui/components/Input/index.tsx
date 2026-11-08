@@ -10,7 +10,6 @@ type Props = {
   iconPosition?: "left" | "right"
   iconClasses?: string
   onClickIcon?: () => void
-  disabled?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: FC<Props> = ({ 
