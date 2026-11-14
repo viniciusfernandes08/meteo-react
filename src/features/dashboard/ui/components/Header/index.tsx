@@ -9,7 +9,8 @@ const Header = () => {
         <CloudSun 
           size={26} 
           strokeWidth={1.8} 
-          className="text-sky-300" 
+          className="text-sky-300"
+          data-testid="cloud-sun-icon"
         />
         <h2 
           className="text-[#F1F5F9] font-sm font-serif pt-0.5"
