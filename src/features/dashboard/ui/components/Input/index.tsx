@@ -31,44 +31,44 @@ const Input: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-1">
-        {label && 
-          <label htmlFor={name} className={classNameLabel}>
-            {label}
-          </label>
-        }
-        <div className={`flex ${className}`}>
-          {icon && iconPosition === "left" &&
-            <button 
-              className={`cursor-pointer disabled:opacity-30 ${iconClasses}`} 
-              onClick={onClickIcon} 
-              aria-label="icon"
-              disabled={disabled}
-            >
-              {icon}
-            </button>
-          }
-          <input 
-            id={id}
-            type={type} 
-            name={name}
-            ref={ref}
-            className={classNameInput}
-            placeholder={placeholder}
-            maxLength={maxLength}
+      {label &&
+        <label htmlFor={id ?? name} className={classNameLabel}>
+          {label}
+        </label>
+      }
+      <div className={`flex ${className}`}>
+        {icon && iconPosition === "left" &&
+          <button
+            className={`cursor-pointer disabled:opacity-30 ${iconClasses}`}
+            onClick={onClickIcon}
+            aria-label="icon"
             disabled={disabled}
           >
-          </input>
-          {icon && iconPosition === "right" &&
-            <button 
-              className={`cursor-pointer disabled:opacity-30 ${iconClasses}`} 
-              onClick={onClickIcon} 
-              aria-label="icon"
-              disabled={disabled}
-            >
-              {icon}
-            </button>
-          }
-        </div>
+            {icon}
+          </button>
+        }
+        <input
+          id={id ?? name}
+          type={type}
+          name={name}
+          ref={ref}
+          className={classNameInput}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          disabled={disabled}
+        >
+        </input>
+        {icon && iconPosition === "right" &&
+          <button
+            className={`cursor-pointer disabled:opacity-30 ${iconClasses}`}
+            onClick={onClickIcon}
+            aria-label="icon"
+            disabled={disabled}
+          >
+            {icon}
+          </button>
+        }
+      </div>
     </div>
   )
 }

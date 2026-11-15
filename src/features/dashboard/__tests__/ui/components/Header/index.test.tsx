@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Header } from "@/features/dashboard/ui/components/Header";
 
-describe("Header", () => {
+describe("Header component", () => {
   it("should render the application name", () => {
     render(<Header />);
 
