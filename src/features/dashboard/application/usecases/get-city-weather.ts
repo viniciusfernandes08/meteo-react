@@ -4,7 +4,7 @@ import { CityWeatherEntity } from '@/features/dashboard/domain/entities/city-wea
 import { getCityCoordinatesUseCase } from './get-city-coordinates';
 import { getCityWeatherDataUseCase } from './get-city-weather-data';
 
-export type CityWeatherResult =
+type CityWeatherResult =
   | { status: 'success'; data: CityWeatherEntity }
   | { status: 'error'; code: DashboardErrorCode };
 
