@@ -91,10 +91,34 @@ A aplicação estará disponível em [http://localhost:3000](http://localhost:30
 ## Scripts disponíveis
 
 ```bash
-npm run dev    # Inicia o ambiente de desenvolvimento
-npm run build  # Gera a build de produção
-npm run start  # Inicia a aplicação em produção
+npm run dev            # Inicia o ambiente de desenvolvimento
+npm run build          # Gera a build de produção
+npm run start          # Inicia a aplicação em produção
+npm run lint           # Executa o ESLint
+npm test               # Executa os testes
+npm run test:watch     # Executa os testes em modo de observação
+npm run test:coverage  # Executa os testes e gera o relatório de cobertura
 ```
+
+## Testes
+
+Os testes são executados com Jest e Testing Library, cobrindo rotas de API,
+casos de uso, mapeadores, repositórios, schemas, hooks e componentes do
+dashboard.
+
+Para executar a suíte completa:
+
+```bash
+npm run test
+```
+
+Para gerar o relatório de cobertura:
+
+```bash
+npm run test:coverage
+```
+
+O relatório detalhado é gerado em `coverage/lcov-report/index.html`.
 
 ## Rotas de API
 
